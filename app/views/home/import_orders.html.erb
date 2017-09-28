@@ -1,0 +1,293 @@
+<nav>
+  <div class="pure-g">
+    <div class="grid-column pure-u-1">
+      <div class="container">
+        <ul>
+        	<li>
+            <%= link_to "Dashboard", root_path %>
+          </li>
+          <li>
+            <%= link_to "Import Orders", import_orders_path %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="pure-g">
+  <div class="grid-column pure-u-1">
+    <div class="container">
+      <div class="flash--message__wrapper">
+          <%- if flash[:success] %>
+            <p class="success">
+              <%= flash[:success] %>
+            </p>
+          <%- elsif flash[:error] %>
+            <p class="error">
+              <%= flash[:error] %>
+            </p>
+          <%- end %> 
+      </div>
+      <div class="pure-g">
+        <div class="grid-column pure-u-1">
+          <header>
+            <h1>
+              Import Orders for Refund
+            </h1>
+          </header>
+        </div>
+        <div class="grid-column pure-u-1">
+          <%- if flash[:message] %>
+              <p class="message">
+                <%= flash[:message] %>
+              </p>
+          <%- end %>
+          
+          <%- if @uploaded_items_to_refund && @uploaded_items_to_refund[:valid_skus] && !@uploaded_items_to_refund[:valid_skus].empty? %>
+            <%- @uploaded_items_to_refund[:valid_skus][0].each do |key,value| %>
+              <span class="uploaded--order__container">
+                <%- value.each do |line_item| %>
+                  <span 
+                    class="line-item__container"
+                    data-upload-order-id = "<%= line_item[:order_id] %>"
+                    data-upload-order-num = "<%= line_item[:order_num] %>"
+                    data-upload-line-item-sku = "<%= line_item[:sku] %>"
+                    data-upload-line-item-reason-code = "<%= line_item[:reason_code] %>"
+                    data-upload-line-item-quantity = "<%= line_item[:quantity] %>"
+                    data-upload-line-item-quality = "<%= line_item[:quality] %>"
+                  >
+                  </span>
+                <% end %>
+              </span>  
+            <% end %>
+          <%- end %>
+
+      		<%- unless (@formatted_refunds && @formatted_refunds[:valid_refunds] && !@formatted_refunds[:valid_refunds].empty?) || @uploaded_items_to_refund && !@uploaded_items_to_refund.empty? %>
+            <%= form_tag import_orders_path, multipart: true do %>
+      			  <%= file_field_tag :file %>
+      			  <%= submit_tag "Import" %>
+      			<%- end %>
+          <%- end %>
+        </div>
+        <div class="orders__container grid-column pure-u-1">
+          <%- if @formatted_refunds && @formatted_refunds[:valid_refunds] && !@formatted_refunds[:valid_refunds].empty?  %>
+          <h2>
+            Valid refund line items
+          </h2>
+            <%- @formatted_refunds[:valid_refunds].each do |formatted_refund| %>
+              <div class="order__container" data-order-id-container="<%=formatted_refund[:refund_line_items].first[:order_id]%>">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>
+                        <h4>
+                          Shopify ID
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Order Number
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Variant Name
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          SKU
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Price
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Quantity
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Quality
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Reason for Return
+                        </h4>
+                      </td>
+                    </tr>  
+                  </thead>
+                  <tbody>  
+                    <%- formatted_refund[:refund_line_items].each do |line_item|%>
+                      <tr class="line-item__row" data-reason-code="<%=line_item[:reason_code]%>" data-quantity="<%=line_item[:quantity]%>" data-line-item-id="<%=line_item[:line_item_id]%>">
+                        <td>
+                          <p>
+                            <%= line_item[:order_id] %>
+                          </p>
+                        </td>
+                        <td>
+                          <a target="_blank" href="https://wearlively.com/admin/orders/<%= line_item[:order_id]%>">
+                            <%= line_item[:order_num] %>
+                          </a>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:name] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:sku] %>
+                          </p>
+                        </td>
+                        <td class="<%- if line_item[:price].to_f <= 10.00 %>flag money <%- end %>">
+                          <p>
+                            $<%= line_item[:price] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:quantity] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:quality] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:reason_code] %>
+                          </p>
+                        </td>
+                      </tr>  
+                    <%- end %>
+                  </tbody>
+                </table>
+                <div class="feedback__container">
+                  
+                </div>
+                <button class="btn process--refund" data-order-id="<%=formatted_refund[:refund_line_items].first[:order_id]%>">
+                  Process refund for Order #: <%= "#{formatted_refund[:refund_line_items].first[:order_num]}" %>
+                </button>
+              </div>  
+            <%- end %> 
+			    <%- end%>
+        </div>
+
+
+        <div class="grid-column pure-u-1">
+          <%- if @formatted_refunds && @formatted_refunds[:invalid_refunds] && !@formatted_refunds[:invalid_refunds].empty? && !@formatted_refunds[:invalid_refunds][0][:refund_line_items].empty? %>
+            <h2>
+              Refund Line Items with invalid SKUS
+            </h2>
+            <p>
+              The following line items  cannot be refunded via this application. To attempt to process any of them, please do so via Shopify's admin panel.
+            </p>
+            <%- @formatted_refunds[:invalid_refunds].each do |formatted_refund| %>
+              <div class="order__container">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>
+                        <h4>
+                          Shopify ID
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Order Number
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Message
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          SKU
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Price
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Quantity
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Quality
+                        </h4>
+                      </td>
+                      <td>
+                        <h4>
+                          Reason for Return
+                        </h4>
+                      </td>
+                    </tr>  
+                  </thead>
+                  <tbody>  
+                    <%- formatted_refund[:refund_line_items].each do |line_item|%>
+                      <tr>
+                        <td>
+                          <p>
+                            <%= line_item[:order_id] %>
+                          </p>
+                        </td>
+                        <td>
+                          <a target="_blank" href="wearlively.com/admin/orders/<%= line_item[:order_id]%>">
+                            <%= line_item[:order_num] %>
+                          </a>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:name] %>
+                          </p>
+                        </td>
+                        <td class="flag">
+                          <p>
+                            <%= line_item[:sku] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            $<%= line_item[:price] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:quantity] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:quality] %>
+                          </p>
+                        </td>
+                        <td>
+                          <p>
+                            <%= line_item[:reason_code] %>
+                          </p>
+                        </td>
+                      </tr>  
+                    <%- end %>
+                  </tbody>
+                </table>
+              </div>  
+            <%- end %> 
+          <%- end%>
+        </div>
+      </div>      
+    </div> 
+  </div>   
+</div>
+<%- flash.clear %>

@@ -1,0 +1,206 @@
+@font-face {
+  font-family: "AvenirLTStd-Heavy";
+  src: 
+    url("../fonts/fonts-2FF27F_0_0.eot"),
+    url("../fonts/fonts-2FF27F_0_0.eot?#iefix") format("embedded-opentype"), 
+    url("../fonts/fonts-2FF27F_0_0.woff") format("woff"), 
+    url("../fonts/fonts-2FF27F_0_0.ttf") format("truetype"), 
+    url("../fonts/fonts-2FF27F_0_0.svg#AvenirLTStd-Heavy") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "AvenirLTStd-Heavy";
+    src: 
+      url("../fonts/fonts-2FF27F_0_0.svg#AvenirLTStd-Heavy") format("svg");
+  }
+}
+
+@font-face {
+  font-family: "AvenirLTPro-Book";
+  src: 
+    url("../fonts/fonts-304EA2_0_0.eot"),
+    url("../fonts/fonts-304EA2_0_0.eot?#iefix") format("embedded-opentype"), 
+    url("../fonts/fonts-304EA2_0_0.svg#AvenirLTPro-Book") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "AvenirLTPro-Book";
+    src: 
+      url("../fonts/fonts-304EA2_0_0.svg#AvenirLTPro-Book") format("svg");
+  }
+}
+
+@font-face {
+  font-family: "GT-Haptik";
+  src: 
+      url("../fonts/fonts-GT-Haptik-Regular.eot"),
+      url("../fonts/fonts-GT-Haptik-Regular.eot?#iefix") format("embedded-opentype"), 
+      url("../fonts/fonts-GT-Haptik-Regular.woff") format("woff"),
+      url("../fonts/fonts-GT-Haptik-Regular.ttf") format("truetype"),
+      url("../fonts/fonts-GT-Haptik-Regular.svg#GT-Haptik") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "GT-Haptik";
+    src: 
+      url("../fonts/fonts-GT-Haptik-Regular.svg#GT-Haptik") format("svg");
+  }
+}
+
+
+// ICONS
+
+@font-face {
+  font-family: "icon-fonts";
+  src: 
+    url("fonts-icomoon.eot"),
+    url("fonts-icomoon.eot?#iefix") format("embedded-opentype"),
+    url("fonts-icomoon.woff") format("woff"), 
+    url("fonts-icomoon.ttf") format("truetype"), 
+    url("fonts-icomoon.svg#icon-fonts") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "icon-fonts";
+    src: 
+      url("fonts-icomoon.svg#icon-fonts") format("svg");
+  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-size: 15px;
+  font-size: 1.5rem;
+  font-family: "icomoon";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-expand-arrow:before {
+  font-size: 5px;
+  font-size: 0.5rem;
+  content: "\e908";
+}
+
+.icon-shopping-bag:before {
+  content: "\e909";
+}
+
+.icon-search:before {
+  content: "\e90a";
+}
+
+.icon-account:before {
+  content: "\e90b";
+}
+
+.icon-chat:before {
+  content: "\e90c";
+}
+
+.icon-email:before {
+  content: "\e906";
+}
+
+.icon-twitter:before {
+  content: "\e907";
+}
+
+.icon-pinterest:before {
+  content: "\e903";
+}
+
+.icon-ig:before {
+  content: "\e904";
+}
+
+.icon-fb:before {
+  content: "\e905";
+}
+
+.icon-lively-logo:before {
+  content: "\e900";
+}
+
+.icon-letter-l:before {
+  content: "\e901";
+}
+
+.icon-xo:before {
+  content: "\e902";
+}
+
+@font-face {
+  font-family: "icomoon";
+  src: 
+    url("fonts-icomoon.eot"),
+    url("fonts-icomoon.eot?#iefix") format("embedded-opentype"),
+    url("fonts-icomoon.woff") format("woff"), 
+    url("fonts-icomoon.ttf") format("truetype"), 
+    url("fonts-icomoon.svg#icomoon") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "icomoon";
+    src: 
+      url("fonts-icomoon.svg#icomoon") format("svg");
+  }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pinterest:before {
+  content: "\e903";
+}
+
+.icon-ig:before {
+  content: "\e904";
+}
+
+.icon-fb:before {
+  content: "\e905";
+}
+
+.icon-lively-logo:before {
+  content: "\e900";
+}
+
+.icon-letter-l:before {
+  content: "\e901";
+}
+
+.icon-xo:before {
+  content: "\e902";
+}

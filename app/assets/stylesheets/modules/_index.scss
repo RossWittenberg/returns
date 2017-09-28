@@ -1,0 +1,78 @@
+.order__container {
+	margin: 20px 0;
+	border: 1px #D3D3D3 dotted;
+	padding: 20px;
+}
+
+.feedback__container {
+    height: 50px;
+    display: block;
+	&.pending {
+	    background-image: url(https://m.popkey.co/163fce/Llgbv_s-200x150.gif);
+	    background-size: contain;
+	    background-position-x: 50%;
+	    background-repeat: no-repeat;
+	}
+}
+
+.faded {
+	opacity: .4;
+}
+
+span.message {
+	line-height: 50px;
+	&.error__message {
+		color: indianred;
+	}
+
+	&.success__message {
+		color: yellowgreen;
+	}
+}
+
+
+form {
+	margin: 40px 0;
+}
+
+button {
+	&.process--refund {
+		margin: 10px 0;
+		padding: 8px;
+		text-transform: uppercase;
+	}
+}
+
+table {
+	margin-bottom: 20px; 
+	width: 100%;
+	thead {
+		tr {
+			td {
+				padding: 8px 0;
+				h4 {
+					text-transform: uppercase;
+					font-size: 10px;
+				}	
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				&.flag {
+					background-color: indianred;
+				}
+			}
+			h4 {
+				&.order--number__header {
+					padding: 4px 0;
+				}
+			}
+			td {
+				border: #808080 1px solid;
+				padding: 4px;
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+<%- if flash[:success] %>
+  <p class="success">
+    <%= flash[:success] %>
+  </p>
+<%- elsif flash[:error] %>
+  <p class="error">
+    <%= flash[:error] %>
+  </p>
+<%- end %> 
+
+<%- flash.clear %>

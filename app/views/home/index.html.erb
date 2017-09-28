@@ -1,0 +1,54 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({
+        title: "Home",
+        icon: "<%= asset_path('favicon.ico') %>"
+      });
+    });
+  </script>
+<% end %>
+
+<nav>
+  <div class="pure-g">
+    <div class="grid-column pure-u-1">
+      <div class="container">
+        <ul>
+          <li>
+            <%= link_to "Dashboard", root_path %>
+          </li>
+          <li>
+            <%= link_to "Import Orders", import_orders_path %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="pure-g">
+  <div class="grid-column pure-u-1">
+    <div class="container">
+      <div class="flash--message__wrapper">
+          <%- if flash[:success] %>
+            <p class="success">
+              <%= flash[:success] %>
+            </p>
+          <%- elsif flash[:error] %>
+            <p class="error">
+              <%= flash[:error] %>
+            </p>
+          <%- end %> 
+      </div>
+      <%- flash.clear %>
+      <div class="pure-g">
+        <div class="grid-column pure-u-1">
+          <header>
+            <h1>
+              LIVELY | Returns
+            </h1>
+          </header>
+        </div>
+    </div>      
+  </div>  
+</div>
